@@ -3,482 +3,659 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JesARIS - AI-Powered Construction Risk Intelligence</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>JESARIS - AI-Powered Document Review for Engineering</title>
+    <meta name="description" content="Stop wasting engineering time on manual PDF comparison. JESARIS automates submittal review with AI - saving 5.5 hours per week per engineer.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #0891B2;
+            --accent: #06B6D4;
+            --dark: #1E293B;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+            --text: #334155;
+            --text-light: #64748B;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(8, 145, 178, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .logo-aris {
+            color: var(--accent);
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 32px;
+            max-width: 700px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .stat {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--accent);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            margin-top: 32px;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+            background: #22d3ee;
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 100px 40px;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .pain-card {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .pain-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .pain-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .pain-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .pain-description {
+            font-size: 16px;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 100px 40px;
+            background: linear-gradient(to bottom, var(--light), var(--white));
+        }
+
+        .how-it-works {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0 auto 24px;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
+        }
+
+        .step-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .step-description {
+            font-size: 16px;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 40px;
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .feature {
+            padding: 32px;
+            background: var(--light);
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 40px 40px;
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: var(--white);
+        }
+
+        .footer-tagline {
+            font-size: 16px;
+            margin-bottom: 32px;
+            opacity: 0.8;
+        }
+
+        .contact-info {
+            margin-bottom: 32px;
+        }
+
+        .contact-email {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email:hover {
+            color: #22d3ee;
+        }
+
+        .copyright {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .hero-content {
+                padding: 80px 24px 60px;
+            }
+
+            .problem, .solution, .features, .cta-section {
+                padding: 60px 24px;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">
-                <span class="logo-jes">Jes</span><span class="logo-aris">ARIS</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact" class="btn btn-primary">Get Started</a></li>
-            </ul>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">🚀 AI-Powered Construction Intelligence</div>
-                <h1>Predict Construction Risks <span class="highlight">Weeks Ahead</span></h1>
-                <p class="hero-subtitle">JesARIS is your Agentic AI Copilot that unifies project data, predicts risks before they impact your schedule, and auto-generates actionable workflows.</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">98%</span>
-                        <span class="stat-label">of megaprojects face overruns</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">2-4</span>
-                        <span class="stat-label">weeks early detection</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">hours/week saved</span>
-                    </div>
+        <div class="hero-content">
+            <div class="logo">Jes<span class="logo-aris">ARIS</span></div>
+            <h1>Stop Wasting Engineering Time on Manual PDF Comparison</h1>
+            <p class="subtitle">AI-powered document review that saves 5.5 hours per week per engineer</p>
+            
+            <a href="mailto:monsif.aminialaoui@jesagroup.com?subject=JESARIS%20Demo%20Request" class="cta-button">Request a Demo</a>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">5.5 hrs</span>
+                    <span class="stat-label">Saved per engineer weekly</span>
                 </div>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary btn-lg">Request Demo</a>
-                    <a href="#how-it-works" class="btn btn-secondary btn-lg">See How It Works</a>
+                <div class="stat">
+                    <span class="stat-number">8x</span>
+                    <span class="stat-label">ROI with < 1 week payback</span>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="dashboard-preview">
-                    <div class="dashboard-header">
-                        <div class="dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                        <span class="dashboard-title">Risk Dashboard</span>
-                    </div>
-                    <div class="dashboard-content">
-                        <div class="risk-card high">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <div>
-                                <span class="risk-title">Schedule Risk Detected</span>
-                                <span class="risk-desc">Zone B concrete pour - 3 week delay predicted</span>
-                            </div>
-                        </div>
-                        <div class="risk-card medium">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <span class="risk-title">Material Conflict</span>
-                                <span class="risk-desc">Steel delivery overlaps with facade work</span>
-                            </div>
-                        </div>
-                        <div class="action-card">
-                            <i class="fas fa-magic"></i>
-                            <div>
-                                <span class="action-title">Auto-Generated Task</span>
-                                <span class="action-desc">RFI draft created for schedule resequencing</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="stat">
+                    <span class="stat-number">30 sec</span>
+                    <span class="stat-label">AI review vs. 45 min manual</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Problem Section -->
-    <section class="problem" id="problem">
+    <section class="problem">
         <div class="container">
-            <div class="section-header">
-                <h2>The <span class="highlight">$280 Billion</span> Problem</h2>
-                <p>Construction projects worldwide suffer from reactive risk management</p>
+            <h2 class="section-title">The $177 Billion Problem</h2>
+            <p class="section-subtitle">Engineers waste 35% of their time on non-productive document work</p>
+            
+            <div class="pain-points">
+                <div class="pain-card reveal">
+                    <span class="pain-icon">⏱️</span>
+                    <h3 class="pain-title">Manual Overload</h3>
+                    <p class="pain-description">
+                        Engineers lose <span class="highlight">5.5 hours/week</span> just searching for project data. 
+                        Each RFI costs <span class="highlight">$1,080 + 8 hours</span> to process. 
+                        Standard submittals take <span class="highlight">30-60 minutes</span> each to manually review.
+                    </p>
+                </div>
+                
+                <div class="pain-card reveal">
+                    <span class="pain-icon">📁</span>
+                    <h3 class="pain-title">Scattered Data</h3>
+                    <p class="pain-description">
+                        Only <span class="highlight">16%</span> have integrated systems. 
+                        <span class="highlight">95% of data</span> goes unused. 
+                        Comments buried in PDFs, revisions scattered across platforms, no unified view.
+                    </p>
+                </div>
+                
+                <div class="pain-card reveal">
+                    <span class="pain-icon">⚠️</span>
+                    <h3 class="pain-title">Costly Rework</h3>
+                    <p class="pain-description">
+                        Rework = <span class="highlight">5-12%</span> of project cost. 
+                        <span class="highlight">48%</span> stems from poor data. 
+                        <span class="highlight">35% rejection rate</span> on submittals. 
+                        Each rejection: <span class="highlight">$805 + 2-4 weeks</span> delay.
+                    </p>
+                </div>
             </div>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Late Detection</h3>
-                    <p>Schedule slippages discovered after the fact. Weather impacts assessed only when delays occur.</p>
-                    <div class="problem-stat">77% of projects are 40%+ late</div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <h2 class="section-title">How JESARIS Works</h2>
+            <p class="section-subtitle">AI-powered document comparison in three simple steps</p>
+            
+            <div class="how-it-works">
+                <div class="step reveal">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Auto-Detect</h3>
+                    <p class="step-description">
+                        System monitors for new document revisions and automatically extracts all review comments from Aconex, Procore, SharePoint.
+                    </p>
                 </div>
-                <div class="problem-card">
-                    <div class="problem-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Data Silos</h3>
-                    <p>Aconex, Primavera, progress reports, weather systems — no unified view means no pattern recognition.</p>
-                    <div class="problem-stat">95% of construction data unused</div>
+                
+                <div class="step reveal">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">AI Analysis</h3>
+                    <p class="step-description">
+                        Compares Rev N vs Rev N-1, matches comments to changes, identifies what's resolved, partial, or missing.
+                    </p>
                 </div>
-                <div class="problem-card">
-                    <div class="problem-icon">
-                        <i class="fas fa-user-clock"></i>
-                    </div>
-                    <h3>Manual Overload</h3>
-                    <p>Hours spent cross-referencing systems. Weak signals buried in email threads. Human fatigue leads to missed connections.</p>
-                    <div class="problem-stat">15+ hours/week on manual review</div>
+                
+                <div class="step reveal">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Instant Report</h3>
+                    <p class="step-description">
+                        Clear status for every comment: ✓ Resolved, ⚠ Partial, ✗ Missing. Ready to approve or escalate immediately.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="features">
+    <section class="features">
         <div class="container">
-            <div class="section-header">
-                <h2>Three Core <span class="highlight">Advantages</span></h2>
-                <p>What makes JesARIS different from traditional tools</p>
-            </div>
+            <h2 class="section-title">Why JESARIS?</h2>
+            <p class="section-subtitle">Built by engineers, for engineers</p>
+            
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Unified Intelligence Layer</h3>
-                    <p>One brain, multiple sources. Real-time sync with Aconex, Primavera, daily progress reports, and weather APIs. No more data silos.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Aconex document sync</li>
-                        <li><i class="fas fa-check"></i> Primavera baseline comparison</li>
-                        <li><i class="fas fa-check"></i> Weather API integration</li>
-                    </ul>
+                <div class="feature reveal">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">Engineering Focus</h3>
+                    <p class="feature-description">
+                        Built specifically for technical spec review and submittal compliance checking. Not legal contracts, not generic documents.
+                    </p>
                 </div>
-                <div class="feature-card featured">
-                    <div class="feature-badge">Core Technology</div>
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Predictive Risk Engine</h3>
-                    <p>ML models forecast schedule and material risks weeks ahead. Stop firefighting, start preventing.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Schedule delay probability scoring</li>
-                        <li><i class="fas fa-check"></i> Material conflict detection</li>
-                        <li><i class="fas fa-check"></i> Vendor performance analysis</li>
-                    </ul>
+                
+                <div class="feature reveal">
+                    <span class="feature-icon">🔗</span>
+                    <h3 class="feature-title">System Integrations</h3>
+                    <p class="feature-description">
+                        Native connections to Aconex, Procore, SharePoint. Works WITH your existing tools, not against them.
+                    </p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Autonomous Workflow Generation</h3>
-                    <p>From insight to action. Auto-generate tasks, draft RFI responses, and trigger escalation workflows — all with human-in-the-loop approval.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Auto-create PM tasks</li>
-                        <li><i class="fas fa-check"></i> Generate draft RFIs</li>
-                        <li><i class="fas fa-check"></i> Schedule resequencing</li>
-                    </ul>
+                
+                <div class="feature reveal">
+                    <span class="feature-icon">💰</span>
+                    <h3 class="feature-title">Affordable Pricing</h3>
+                    <p class="feature-description">
+                        Free starter tier. Professional at $200/project. Enterprise custom pricing. Accessible for 5-50 person firms.
+                    </p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2>How <span class="highlight">JesARIS</span> Works</h2>
-                <p>Four simple steps to proactive risk management</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Connect</h3>
-                        <p>Integrates with Aconex, Primavera, daily progress systems, and weather APIs</p>
-                    </div>
-                    <div class="step-icon">
-                        <i class="fas fa-plug"></i>
-                    </div>
+                
+                <div class="feature reveal">
+                    <span class="feature-icon">📋</span>
+                    <h3 class="feature-title">Standards Compliance</h3>
+                    <p class="feature-description">
+                        Automated checking against ASTM, AASHTO, building codes. Catch spec violations before they become costly mistakes.
+                    </p>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Analyze</h3>
-                        <p>AI agents scan for patterns, anomalies, and risk indicators across all data sources</p>
-                    </div>
-                    <div class="step-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
+                
+                <div class="feature reveal">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Fast ROI</h3>
+                    <p class="feature-description">
+                        8x return on investment with payback in less than 1 week. Save 40 hours/month for a 5-engineer team.
+                    </p>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Predict</h3>
-                        <p>ML models forecast schedule and material risks weeks ahead of impact</p>
-                    </div>
-                    <div class="step-icon">
-                        <i class="fas fa-crystal-ball"></i>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Act</h3>
-                        <p>Auto-generates tasks, escalations, and draft RFI replies for your approval</p>
-                    </div>
-                    <div class="step-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Comparison Section -->
-    <section class="comparison">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Choose <span class="highlight">JesARIS</span></h2>
-                <p>See how we compare to traditional tools</p>
-            </div>
-            <div class="comparison-table-wrapper">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Factor</th>
-                            <th>Traditional Tools</th>
-                            <th>Scheduling AI</th>
-                            <th class="highlight-col">JesARIS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Approach</td>
-                            <td>Dashboards & Reports</td>
-                            <td>Predictive (Passive)</td>
-                            <td class="highlight-col"><strong>Agentic AI</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Timing</td>
-                            <td>Historical Analysis</td>
-                            <td>Forecast</td>
-                            <td class="highlight-col"><strong>Weeks Ahead</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Data Sources</td>
-                            <td>Single System</td>
-                            <td>Schedule Only</td>
-                            <td class="highlight-col"><strong>Cross-System Unified</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Output</td>
-                            <td>Charts & Alerts</td>
-                            <td>Risk Scores</td>
-                            <td class="highlight-col"><strong>Auto-Generated Actions</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Oracle Integration</td>
-                            <td>Native (Limited)</td>
-                            <td>None</td>
-                            <td class="highlight-col"><strong>Deep Aconex/Primavera</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2>Simple, Transparent <span class="highlight">Pricing</span></h2>
-                <p>Choose the plan that fits your project needs</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Professional</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">15,000</span>
-                            <span class="period">/month per project</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Full Aconex integration</li>
-                        <li><i class="fas fa-check"></i> Primavera schedule sync</li>
-                        <li><i class="fas fa-check"></i> Predictive risk scoring</li>
-                        <li><i class="fas fa-check"></i> Automated task generation</li>
-                        <li><i class="fas fa-check"></i> Draft RFI generation</li>
-                        <li><i class="fas fa-check"></i> Weather impact analysis</li>
-                        <li><i class="fas fa-check"></i> Standard support</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-                </div>
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <h3>Enterprise</h3>
-                        <div class="price">
-                            <span class="custom">Custom Pricing</span>
-                            <span class="period">tailored to portfolio size</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Everything in Professional</li>
-                        <li><i class="fas fa-check"></i> Multi-project portfolio view</li>
-                        <li><i class="fas fa-check"></i> Custom risk model training</li>
-                        <li><i class="fas fa-check"></i> Priority escalation workflows</li>
-                        <li><i class="fas fa-check"></i> Dedicated success manager</li>
-                        <li><i class="fas fa-check"></i> API access</li>
-                        <li><i class="fas fa-check"></i> Advanced analytics</li>
-                        <li><i class="fas fa-check"></i> SSO & compliance features</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary btn-block">Contact Sales</a>
-                </div>
-            </div>
-            <div class="pricing-note">
-                <p><i class="fas fa-info-circle"></i> All plans include a pilot program with dedicated onboarding support</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Personas Section -->
-    <section class="personas">
-        <div class="container">
-            <div class="section-header">
-                <h2>Built For <span class="highlight">Your Role</span></h2>
-                <p>JesARIS serves different needs across your organization</p>
-            </div>
-            <div class="personas-grid">
-                <div class="persona-card">
-                    <div class="persona-avatar">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3>Project Director</h3>
-                    <p class="persona-quote">"I find out about problems too late to prevent them"</p>
-                    <ul class="persona-benefits">
-                        <li><i class="fas fa-check"></i> Executive dashboards with predictive insights</li>
-                        <li><i class="fas fa-check"></i> Early warning on schedule risks</li>
-                        <li><i class="fas fa-check"></i> Portfolio-level risk visibility</li>
-                    </ul>
-                </div>
-                <div class="persona-card">
-                    <div class="persona-avatar">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <h3>Project Controls Manager</h3>
-                    <p class="persona-quote">"I spend hours cross-referencing systems manually"</p>
-                    <ul class="persona-benefits">
-                        <li><i class="fas fa-check"></i> Automated data synthesis</li>
-                        <li><i class="fas fa-check"></i> Time savings on manual review</li>
-                        <li><i class="fas fa-check"></i> Auto-generated tasks & RFIs</li>
-                    </ul>
+                
+                <div class="feature reveal">
+                    <span class="feature-icon">🏗️</span>
+                    <h3 class="feature-title">Domain Expertise</h3>
+                    <p class="feature-description">
+                        JESA team brings 30+ years construction engineering experience. We understand MEP specs, submittals, and workflows.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta" id="contact">
+    <section class="cta-section">
         <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Transform Your Risk Management?</h2>
-                <p>Join the future of proactive construction intelligence</p>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Work Email" required>
-                    </div>
-                    <div class="form-row">
-                        <input type="text" name="company" placeholder="Company Name" required>
-                        <select name="project_size" required>
-                            <option value="">Project Size</option>
-                            <option value="small">Under $100M</option>
-                            <option value="medium">$100M - $500M</option>
-                            <option value="large">$500M - $1B</option>
-                            <option value="mega">Over $1B</option>
-                        </select>
-                    </div>
-                    <textarea name="message" placeholder="Tell us about your project and challenges..." rows="4"></textarea>
-                    <button type="submit" class="btn btn-primary btn-lg">Request Demo</button>
-                </form>
-            </div>
+            <h2>Ready to Transform Your Document Review?</h2>
+            <p>Let engineers focus on engineering, not PDF archaeology.</p>
+            <a href="mailto:monsif.aminialaoui@jesagroup.com?subject=JESARIS%20Demo%20Request&body=Hi%2C%0A%0AI'm%20interested%20in%20learning%20more%20about%20JESARIS.%20Please%20contact%20me%20to%20schedule%20a%20demo.%0A%0AName%3A%20%0ACompany%3A%20%0ANumber%20of%20Engineers%3A%20%0AMonthly%20Submittals%3A%20" class="cta-button-secondary">Contact Us</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <span class="logo-jes">Jes</span><span class="logo-aris">ARIS</span>
-                    </a>
-                    <p>AI-Powered Construction Risk Intelligence</p>
-                    <p class="tagline">Predict. Prevent. Perform.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Jes<span class="logo-aris">ARIS</span></div>
+            <p class="footer-tagline">Built by engineers, for engineers</p>
+            
+            <div class="contact-info">
+                <p>Get in touch:</p>
+                <a href="mailto:monsif.aminialaoui@jesagroup.com" class="contact-email">monsif.aminialaoui@jesagroup.com</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 JesARIS. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
+            
+            <p class="copyright">© 2026 JESARIS. AI-Powered Document Review for Engineering.</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                    document.querySelector('.nav-links').classList.remove('active');
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
                 }
             });
-        });
+        }
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your interest! We will contact you shortly.');
-            this.reset();
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+        window.addEventListener('scroll', reveal);
+        reveal(); // Check on load
     </script>
 </body>
 </html>
